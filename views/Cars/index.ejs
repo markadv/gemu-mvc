@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head.ejs'); %>
+    </head>
+    <body>
+        <div class="container">
+            <% console.log("dom",count) %>
+            <p>You did <span><%= count; %>x</span> visiting this page.</p>
+            <p>You have <span><%= table.length; %></span> cars!</p>
+            <p>The cars in the database are as follows:</p>
+            <ul>
+<% for(let i=0; i<table.length; i++){%>
+                <li><%= table[i].name %> - <%=table[i].year %></li>
+<% } %>
+            </ul>
+        </div>
+    </body>
+</html>
