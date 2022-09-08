@@ -1,11 +1,14 @@
-const QueryBuilder = require("../base/QueryBuilder.js");
+const QueryBuilder = require("./QueryBuilder.js");
+const helper = require("../helper/helper");
 
 module.exports = class Model {
     constructor() {
         this.mysql = require("mysql2/promise");
-        this.db = require("../config").connection;
+        this.db = require("../../config").database;
         this.connection;
         this.qb = new QueryBuilder();
+        this.helper = helper;
+        this.bcrypt = require("bcryptjs");
     }
     getAll = async (table) => {
         await this.connectToDatabase();

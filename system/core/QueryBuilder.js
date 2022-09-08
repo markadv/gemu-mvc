@@ -8,9 +8,11 @@ module.exports = class QueryBuilder {
         this.selectArray = [];
         this.orderByArray = [];
         this.groupByArray = [];
+        this.insertIntoArray = [];
+        this.valuesArray = [];
+        this.valuesQArray = [];
     }
     select = (...columns) => {
-        console.log(columns);
         if (columns.length === 0) {
             this.selectArray.push("*");
         } else {
@@ -33,7 +35,7 @@ module.exports = class QueryBuilder {
         } else {
             for (let condition of conditions) {
                 if (Array.isArray(condition)) {
-                    this.whereArray.push(`${column[0]} ${column[1]} ${column[1]}`);
+                    this.whereArray.push(`${condition[0]} ${condition[1]} "${condition[2]}"`);
                 } else {
                     console.log("Invalid where input");
                 }
@@ -41,8 +43,33 @@ module.exports = class QueryBuilder {
         }
         return this;
     };
-    get = (table) => {
+    values = (...values) => {
+        for (let value of values) {
+            this.valuesArray.push(value);
+            this.valuesQArray.push("?");
+        }
+        return this;
+    };
+    insertInto = (...columns) => {
+        for (let column of columns) {
+            this.insertIntoArray.push(column);
+        }
+        return this;
+    };
+    set = (table) => {
+        this._query = "";
+        this._query += `INSERT INTO ${table} `;
+        if (this.insertIntoArray.length > 0) {
+            this._query += `(${this.insertIntoArray.join(", ")}) `;
+        }
+        this._query += `VALUES (${this.valuesQArray.join(", ")})`;
+        let query = this._query,
+            values = this.valuesArray;
         this.clear();
+        return [query, values];
+    };
+    get = (table) => {
+        this._query = "";
         if (this.selectArray.length !== 0) {
             this._query += `SELECT ${this.selectArray.join(", ")} `;
         } else {
@@ -59,10 +86,10 @@ module.exports = class QueryBuilder {
         if (this.groupByArray.length !== 0) {
             this._query += `GROUP BY ${this.groupByArray}`;
         }
+        this.clear();
         return this._query;
     };
     clear = () => {
-        this._query = "";
         this.whereArray = [];
         this.whereInArray = [];
         this.fromArray = [];
@@ -70,5 +97,8 @@ module.exports = class QueryBuilder {
         this.selectArray = [];
         this.orderByArray = [];
         this.groupByArray = [];
+        this.insertIntoArray = [];
+        this.valuesArray = [];
+        this.valuesQArray = [];
     };
 };

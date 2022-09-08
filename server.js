@@ -15,7 +15,7 @@ app.use(session(sessionConfig));
 app.set("view engine", "ejs");
 app.use("/", require("./routes"));
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8888;
 // tell the express app to listen on port
 app.listen(port, function () {
     console.log(`listening on port ${port}`);
