@@ -1,2 +1,2 @@
-# gemu_mvc
+# Gemu MVC
  Game MVC by Markad

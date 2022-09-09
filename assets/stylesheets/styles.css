@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-size: 0;
+}
+.filter {
+    height: 100vh;
+    width: 25%;
+    display: inline-block;
+    border-left: 1px solid black;
+    font-size: 18px;
+    vertical-align: top;
+    background-color: lightgray;
+    padding: 30px 0px 30px 50px;
+}
+.display {
+    height: 100vh;
+    width: 75%;
+    display: inline-block;
+    font-size: 36px;
+    vertical-align: top;
+    padding: 50px;
+}
+.frame {
+    display: inline-block;
+    font-size: 0;
+}
+img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+p {
+    font-size: 16px;
+    text-align: center;
+}
+li {
+    list-style-type: none;
+}
+#submit {
+    display: none;
+}

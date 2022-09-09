@@ -12,4 +12,7 @@ module.exports = {
     isValidName: (name) => {
         return /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g.test(name);
     },
+    getObjKey(obj, value) {
+        return Object.keys(obj).find((key) => obj[key] === value);
+    },
 };

@@ -1,0 +1,55 @@
+<form class="filter" action="/process" method="post">
+    <label for="name">Search Users</label>
+    <input id="name" type="text" name="name" />
+    <h2>Gender</h2>
+    <ul>
+        <li>
+            <input type="checkbox" name="male" />
+            <label for="male">Male</label>
+        </li>
+        <li>
+            <input type="checkbox" name="female" />
+            <label for="female">Female</label>
+        </li>
+    </ul>
+    <h2>Sports</h2>
+    <ul>
+        <li>
+            <input type="checkbox" name="basketball" />
+            <label for="basketball">Basketball</label>
+        </li>
+        <li>
+            <input type="checkbox" name="volleyball" />
+            <label for="volleyball">Volleyball</label>
+        </li>
+        <li>
+            <input type="checkbox" name="baseball" />
+            <label for="baseball">Baseball</label>
+        </li>
+        <li>
+            <input type="checkbox" name="football" />
+            <label for="football">Football</label>
+        </li>
+        <li>
+            <input type="checkbox" name="american_football" />
+            <label for="american_football">American football</label>
+        </li>
+        <li>
+            <input type="checkbox" name="lacrosse" />
+            <label for="lacrosse">Lacrosse</label>
+        </li>
+        <li>
+            <input type="checkbox" name="golf" />
+            <label for="golf">Golf</label>
+        </li>
+        <li>
+            <input type="checkbox" name="track_and_field" />
+            <label for="track_and_field">Track and Field</label>
+        </li>
+    </ul>
+    <input id="submit" type="submit" value="Search" />
+</form>
+<div class="display">
+    <h1>Athletes</h1>
+    <div class="container"></div>
+</div>
