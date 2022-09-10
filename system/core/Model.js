@@ -12,6 +12,10 @@ module.exports = class Model {
     }
     connectToDatabase = async () => {
         try {
+            // Singleton for testing
+            // if (this.connection) {
+            //     return;
+            // }
             this.connection = await this.mysql.createConnection(this.db);
         } catch (error) {
             return console.log(`Could not connect - ${error}`);
