@@ -3,7 +3,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 /* Load developer assigned routes in config by Markad*/
-const { routes } = require("../../config.js");
+const { routes } = require("./config");
 
 /* This snippet assigns the class to Controller.className */
 let controllers = {};

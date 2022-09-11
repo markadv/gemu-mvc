@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head.ejs'); %>
+    </head>
+    <body>
+        <h1>Welcome <%= data.firstName %></h1>
+        <a class="logoff" href="/logoff">Log off</a>
+        <div class="results">
+            <ul>
+                <li>First Name: <%= data.firstName %></li>
+                <li>Last Name: <%= data.lastName %></li>
+                <li>Email Address: <%= data.email %></li>
+            </ul>
+        </div>
+    </body>
+</html>

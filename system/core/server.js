@@ -3,7 +3,7 @@ module.exports = (async () => {
     const app = express();
     const bodyParser = require("body-parser");
     const session = require("express-session");
-    const config = require("../../config");
+    const config = require("./config");
     const { routes, sessionConfig, enableProfiler, localPort } = config;
     const { getObjKey } = require("../helper/helper");
     const path = require("path");
@@ -18,25 +18,31 @@ module.exports = (async () => {
     app.use(express.static(path.join(__dirname, "..", "..", "assets")));
 
     profiler = (req, res, next) => {
-        /* Get class method from the new routes */
-        const startTime = performance.now();
-        const classMethod = getObjKey(routes, req.url);
-        /* Get memory used */
-        const used = process.memoryUsage().rss / 1024 / 1024;
-        const mbUsed = Math.round(used * 100) / 100;
-        res.locals.profiler = {
-            getparams: req.params,
-            getquery: req.query,
-            post: req.body,
-            memoryUsage: mbUsed,
-            httpHeader: req.headers,
-            session: req.session,
-            route: { classMethod: classMethod, url: req.url },
-            config: config,
-        };
-        const endTime = performance.now();
-        let timeExec = Math.round((endTime - startTime) * 1000) / 1000;
-        res.locals.profiler["performance"] = timeExec;
+        if (!req.session.profiler) {
+            /* Get class method from the new routes */
+            const startTime = performance.now();
+            const classMethod = getObjKey(routes, req.url);
+            /* Get memory used */
+            const used = process.memoryUsage().rss / 1024 / 1024;
+            const mbUsed = Math.round(used * 100) / 100;
+            res.locals.profiler = {
+                getparams: req.params,
+                getquery: req.query,
+                post: req.body,
+                memoryUsage: mbUsed,
+                httpHeader: req.headers,
+                session: req.session,
+                route: { classMethod: classMethod, url: req.url },
+                config: config,
+            };
+            const endTime = performance.now();
+            let timeExec = Math.round((endTime - startTime) * 1000) / 1000;
+            res.locals.profiler["performance"] = timeExec;
+        } else {
+            res.locals.profiler = JSON.parse(req.session.profiler);
+            delete req.session.profiler;
+        }
+
         next();
     };
 

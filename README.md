@@ -6,34 +6,35 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 
 ```
 📦gemu_mvc
-┣ 📂assets - Add your assets here like images, scripts, and stylesheets
-┃ ┣ 📂scripts
-┃ ┃ ┗ 📜index.js
-┃ ┗ 📂stylesheets
-┃ ┃ ┗ 📜styles.css
-┣ 📂controllers - Add your controllers here
-┃ ┗ 📜Templates.js
-┣ 📂models - Add your models here
-┃ ┗ 📜Template.js
-┣ 📂system - Do not touch this foler
-┃ ┣ 📂core
-┃ ┃ ┣ 📜Controller.js
-┃ ┃ ┣ 📜Model.js
-┃ ┃ ┣ 📜profiler.ejs
-┃ ┃ ┣ 📜QueryBuilder.js
-┃ ┃ ┣ 📜routes.js
-┃ ┃ ┗ 📜server.js
-┃ ┗ 📂helper
-┃ ┃ ┗ 📜helper.js
-┣ 📂views - Add your views here
-┃ ┣ 📂partials - Add your partials here
-┃ ┃ ┗ 📜head.ejs
-┃ ┗ 📜default.ejs - Default.ejs, do not delete
-┣ 📜app.js - Run this to run the server
-┣ 📜config.js - This is for your config while we haven't implemented YAML
-┣ 📜LICENSE - Legal stuff
-┣ 📜package.json - Dependencies
-┗ 📜README.md - Oh it's me!
+ ┣ 📂assets
+ ┃ ┣ 📂scripts
+ ┃ ┗ 📂stylesheets
+ ┃ ┃ ┗ 📜styles.css
+ ┣ 📂controllers
+ ┃ ┣ 📜Templates.js
+ ┣ 📂models
+ ┃ ┣ 📜Template.js
+ ┣ 📂system
+ ┃ ┣ 📂core
+ ┃ ┃ ┣ 📜config.js
+ ┃ ┃ ┣ 📜Controller.js
+ ┃ ┃ ┣ 📜Model.js
+ ┃ ┃ ┣ 📜profiler.ejs
+ ┃ ┃ ┣ 📜QueryBuilder.js
+ ┃ ┃ ┣ 📜routes.js
+ ┃ ┃ ┗ 📜server.js
+ ┃ ┗ 📂helper
+ ┃ ┃ ┗ 📜helper.js
+ ┣ 📂views
+ ┃ ┣ 📂partials
+ ┃ ┃ ┗ 📜head.ejs
+ ┃ ┗ 📜default.ejs
+ ┣ 📜app.js
+ ┣ 📜config.yaml
+ ┣ 📜LICENSE
+ ┣ 📜package-lock.json
+ ┣ 📜package.json
+ ┗ 📜README.md
 ```
 
 ## Table of contents
@@ -55,13 +56,14 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 ## Main Features
 
 -   [x] Automatic creation of routes based on controller class and methods
+-   [x] Easy config with YAML
 -   [x] Easy rerouting using routes in config
 -   [x] Built-in profiler- [Gemu MVC built using NodeJS, Express]
 -   [x] Easy templating with EJS template
 -   [x] Easy view and partial partial view system
 -   [x] Easy model system with query builder
--   [x] Easy mySQL database connection
 -   [x] Easy mySQL singleton pool database connection
+-   [x] Easy PostgreSQL singleton pool database connection
 -   [x] Built-in commands wrapped in async/await and promises
 
 ## Extra features
@@ -121,16 +123,18 @@ Go to your local host with the appropriate port to see the sample template.
     1. Import/require the controller file.
     2. Import/require the needed model file.
     3. Declare the model first as a private variable before creating a new instance in the constructor. Declaring the model as private is important. If you don't follow this convention, the application will interpret all the methods from the model as url/routes of your application.
-3. Create your new routes by creating new method in your controller class. It is recommended to use fat arrow function since this prevents rebinding of this. Also, it is recommended to use async and await to all your methods.
+3. Create your new routes by creating new method in your controller class. It is recommended to use fat arrow function for methods to prevents rebinding of this. Also, it is recommended to use async and await to all your methods.
 4. In order to change your existing routes, go to your config.js in your root folder. Under the routes, declare the base url/routes (this is your /Controller/Method) with trailing slash as your key and your new route as the value. Please follow the nodeJS convention for the get parameters and queries.
 5. It is recommended to declare non-view functions outside the class. However, if you really want create a method instead of function, please add an underscore at the start of the function name. This will prevent the application in mistaking it as a route.
-6. Please use the built-in \_view method to display the page. It uses a built-in EJS template and takes advantage of the partial page system. You can easily reuse component for your page like your head, navigation bar(to be implemented), and footer(to be implemented). Just add the pathname through the second parameter using the convention: {"variableName":"path"} then add the new component in your default.ejs file. You can also send data from your controller to your view through this template using the data key.
+6. Please use the built-in \_view method to display the page. It uses a built-in EJS template and takes advantage of the partial page system. You can easily reuse component for your page like your head, navigation bar(to be implemented), and footer(to be implemented). Just add the pathname through the third parameter using the convention: {"variableName":"path"} then add the new component in your default.ejs file. You can also send data from your controller to your view through this template using the data key.
 7. When call the model method, please make sure to pass the response to the method involving the database. This is used to record the query for the profiler.
 8. You can create flash data using \_flash command and displaying it with \_flashdata.
 
 ### Views
 
-Gemu MVC uses partial view so you can create the view using components. The default.ejs in views folder act as the main html where you can add component using the includes ejs function. You can then easily declare it through the built-in view function. Follow the line used for the dynamic head or content when declaring new components.
+Gemu MVC uses partial view so you can create the view using components. The default.ejs in views folder act as the main html where you can add component using the includes ejs keyword. You can then easily declare it through the built-in view function. Follow the line used for the dynamic head or content when declaring new components.
+Declaration in controller = {varName: "URL/Routes"}
+Declaration in default.ejs = <% if(varName!==""){ %> <%- include(varName,{data}) %> <% } %>
 
 (Currently, the default.ejs only has dynamic title, head, content, and profiler. default.ejs will be updated in the future.)
 

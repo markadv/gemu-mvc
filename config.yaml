@@ -1,0 +1,31 @@
+enableProfiler: true
+localPort: 8888
+routes:
+    "/Users/index": "/"
+    "/Users/process_registration": "/process/register"
+    "/Users/process_login": "/process/login"
+    "/Users/success": "/success"
+    "/Users/logoff": "/logoff"
+dbdriver: "pg"
+database1:
+    host: "localhost"
+    port: 5432
+    user: "postgres"
+    password: "123456"
+    database: "postgres"
+    max: 30
+database2:
+    host: "localhost"
+    port: 3308
+    user: "root"
+    password: ""
+    database: "gemu_mvc"
+    waitForConnections: true
+    connectionLimit: 10
+    queueLimit: 0
+sessionConfig:
+    secret: "gemu_mvc"
+    resave: false
+    saveUninitialized: true
+    cookie:
+        maxAge: 60000

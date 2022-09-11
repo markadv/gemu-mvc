@@ -11,10 +11,9 @@ module.exports = class Templates extends Controller {
         this.#Template = new Template();
     }
     index = async (req, res) => {
-        this._targetProfiler(req, res);
-        await this._view(res, { title: "Templates", content: "Templates/index", data: {} });
+        await this._view(req, res, { title: "Templates", content: "", data: {} });
     };
     test = async (req, res) => {
-        this._redirect(req, res, "/");
+        this._redirect(req, res, "/Templates/index");
     };
 };
