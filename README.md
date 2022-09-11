@@ -8,12 +8,12 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 📦gemu_mvc
  ┣ 📂assets
  ┃ ┣ 📂scripts
- ┃ ┗ 📂stylesheets
- ┃ ┃ ┗ 📜styles.css
+ ┃ ┣ 📂stylesheets
+ ┃ ┗ 📂images
  ┣ 📂controllers
- ┃ ┣ 📜Templates.js
+ ┃ ┗ 📜Templates.js
  ┣ 📂models
- ┃ ┣ 📜Template.js
+ ┃ ┗  📜Template.js
  ┣ 📂system
  ┃ ┣ 📂core
  ┃ ┃ ┣ 📜config.js
@@ -24,7 +24,7 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
  ┃ ┃ ┣ 📜routes.js
  ┃ ┃ ┗ 📜server.js
  ┃ ┗ 📂helper
- ┃ ┃ ┗ 📜helper.js
+ ┃   ┗ 📜helper.js
  ┣ 📂views
  ┃ ┣ 📂partials
  ┃ ┃ ┗ 📜head.ejs
@@ -58,13 +58,14 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 -   [x] Automatic creation of routes based on controller class and methods
 -   [x] Easy config with YAML
 -   [x] Easy rerouting using routes in config
--   [x] Built-in profiler- [Gemu MVC built using NodeJS, Express]
+-   [x] Built-in profiler including redirect
 -   [x] Easy templating with EJS template
 -   [x] Easy view and partial partial view system
 -   [x] Easy model system with query builder
 -   [x] Easy mySQL singleton pool database connection
 -   [x] Easy PostgreSQL singleton pool database connection
 -   [x] Built-in commands wrapped in async/await and promises
+-   [x] Persistent session with Redis (Need Redis server)
 
 ## Extra features
 
@@ -72,7 +73,7 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 
 ## Future features
 
--   [ ] Profiler with redirect and ajax
+-   [ ] Profiler with and ajax
 -   [ ] Better view template
 -   [ ] Adding better controller and model templates
 -   [ ] Create a better all-encompassing inline-styles for the profiler

@@ -5,12 +5,13 @@ const yaml = require("js-yaml");
 try {
     let fileContents = fs.readFileSync("./config.yaml", "utf8");
     let data = yaml.load(fileContents);
+
     module.exports = data;
 } catch (e) {
     console.log(e);
 }
 
-//Orginal implementation
+//Orginal implementation in case I don't want YAML
 // module.exports = {
 //     enableProfiler: true,
 //     localPort: 8888,

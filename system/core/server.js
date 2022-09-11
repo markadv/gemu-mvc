@@ -7,6 +7,16 @@ module.exports = (async () => {
     const { routes, sessionConfig, enableProfiler, localPort } = config;
     const { getObjKey } = require("../helper/helper");
     const path = require("path");
+    /* Redis */
+    const redis = require("ioredis");
+    const redisClient = redis.createClient();
+    redisClient.on("error", (err) => {
+        console.log("Redis error: ", err);
+    });
+    const redisStore = require("connect-redis")(session);
+    const redisSession = new redisStore({ host: "localhost", port: 6379, client: redisClient, ttl: 86400 });
+    sessionConfig.store = redisSession;
+    /* End of redis */
 
     // support parsing of application/json type post data
     app.use(bodyParser.json());
@@ -17,6 +27,7 @@ module.exports = (async () => {
     app.set("view engine", "ejs");
     app.use(express.static(path.join(__dirname, "..", "..", "assets")));
 
+    /* Profiler */
     profiler = (req, res, next) => {
         if (!req.session.profiler) {
             /* Get class method from the new routes */
@@ -49,6 +60,7 @@ module.exports = (async () => {
     if (enableProfiler) {
         app.use(profiler);
     }
+    /* End of profiler */
 
     app.use("/", require("./routes"));
     const port = process.env.PORT || localPort;
