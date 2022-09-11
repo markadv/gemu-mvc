@@ -57,6 +57,7 @@ module.exports = class Model {
     };
     query = async (res, query, values = "") => {
         const queryFormatted = await this.queryFormat(query, values);
+        console.log(queryFormatted);
         await this.profiler(res, queryFormatted);
         const results = await this.connection.query(query, values);
         return results;

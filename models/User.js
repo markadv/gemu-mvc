@@ -47,11 +47,13 @@ module.exports = class User extends Model {
         } else {
             await this.connectToDatabase();
             const passwordHash = this.bcrypt.hashSync(password, 10);
-            let query = this.qb
-                .values(firstName, lastName, email, passwordHash)
+            const query = await this.qb
+                .values(["$1", "$2", "$3", "$4"])
                 .insertInto("first_name", "last_name", "email", "password_hash")
                 .set("users");
-            const addUser = await this.connection.execute(query[0], query[1]);
+            console.log(query);
+            const values = [firstName, lastName, email, passwordHash];
+            const addUser = await this.query(res, query, values);
             return {
                 type: "success",
                 message: "Successfully added user",

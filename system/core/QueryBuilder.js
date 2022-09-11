@@ -78,7 +78,7 @@ module.exports = class QueryBuilder {
         if (this.insertIntoArray.length > 0) {
             this._query += `(${this.insertIntoArray.join(", ")}) `;
         }
-        this._query += `VALUES (${this.valuesQArray.join(", ")})`;
+        this._query += `VALUES (${this.valuesArray.join(", ")})`;
         let query = this._query;
 
         this.clear();

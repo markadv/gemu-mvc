@@ -43,6 +43,7 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
   - [File tree](#file-tree)
   - [Table of contents](#table-of-contents)
   - [Main Features](#main-features)
+  - [Critical missing features](#critical-missing-features)
   - [Extra features](#extra-features)
   - [Future features](#future-features)
   - [Installation](#installation)
@@ -66,6 +67,11 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 -   [x] Easy PostgreSQL singleton pool database connection
 -   [x] Built-in commands wrapped in async/await and promises
 -   [x] Persistent session with Redis (Need Redis server)
+
+## Critical missing features
+
+-   [ ] Update in query builder
+-   [ ] Delete in query builder
 
 ## Extra features
 
@@ -156,4 +162,4 @@ Declaration in default.ejs = <% if(varName!==""){ %> <%- include(varName,{data})
 -   [x] isBetween - Checks it he value us between the two parameter
 -   [x] isValidEmail - Checks if the email is valid
 -   [x] isValidName - Checks if the name is valid
--   [x] getObjKey - Checks what the key of the valus is in the object
+-   [x] getObjKey - Checks what the key of the values is in the object
