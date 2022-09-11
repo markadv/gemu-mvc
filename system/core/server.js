@@ -4,18 +4,24 @@ module.exports = (async () => {
     const bodyParser = require("body-parser");
     const session = require("express-session");
     const config = require("./config");
-    const { routes, sessionConfig, enableProfiler, localPort } = config;
+    const { routes, sessionConfig, enableProfiler, localPort, enableRedis } = config;
     const { getObjKey } = require("../helper/helper");
     const path = require("path");
     /* Redis */
-    const redis = require("ioredis");
-    const redisClient = redis.createClient();
-    redisClient.on("error", (err) => {
-        console.log("Redis error: ", err);
-    });
-    const redisStore = require("connect-redis")(session);
-    const redisSession = new redisStore({ host: "localhost", port: 6379, client: redisClient, ttl: 86400 });
-    sessionConfig.store = redisSession;
+    if (enableRedis) {
+        const redis = require("ioredis");
+        const redisClient = redis.createClient();
+        redisClient.on("error", (err) => {
+            console.log("Redis error: ", err);
+        });
+        const redisStore = require("connect-redis")(session);
+        const redisSession = new redisStore({ host: "localhost", port: 6379, client: redisClient, ttl: 86400 });
+        sessionConfig.store = redisSession;
+    } else {
+        sessionConfig.cookie.secure = true;
+        sessionConfig.cookie.maxAge = 60000;
+    }
+
     /* End of redis */
 
     // support parsing of application/json type post data

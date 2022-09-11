@@ -6,7 +6,7 @@ routes:
     "/Users/process_login": "/process/login"
     "/Users/success": "/success"
     "/Users/logoff": "/logoff"
-dbdriver: "pg"
+dbdriver: "mongodb"
 database1:
     host: "localhost"
     port: 5432
@@ -23,6 +23,10 @@ database2:
     waitForConnections: true
     connectionLimit: 10
     queueLimit: 0
+database3:
+    uri: "mongodb+srv://markad:rL64xwvroAYU25fV@gemu-mvc.0rdsfx8.mongodb.net/?retryWrites=true&w=majority"
+    database: "gemu-mvc"
+enableRedis: true
 sessionConfig:
     secret: "gemu_mvc"
     resave: false

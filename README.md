@@ -65,6 +65,7 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 -   [x] Easy model system with query builder
 -   [x] Easy mySQL singleton pool database connection
 -   [x] Easy PostgreSQL singleton pool database connection
+-   [x] Supported mongoDB database connection
 -   [x] Built-in commands wrapped in async/await and promises
 -   [x] Persistent session with Redis (Need Redis server)
 
