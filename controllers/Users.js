@@ -11,12 +11,24 @@ module.exports = class Users extends Controller {
         this.#User = new User();
     }
     index = async (req, res) => {
-        this._flashData(req, res);
-        if (req.session.data) {
-            res.redirect("/success");
-        }
-        // await this.view(res, "Users/index");
-        await this._view(req, res, { title: "Login/Register", content: "Users/index", data: {} });
+        // if (typeof req.session.user !== undefined) {
+        //     this._redirect("/register");
+        // } else
+        this._redirect(req, res, "/signin");
+    };
+    signin = async (req, res) => {
+        await this._view(req, res, {
+            title: "Signin",
+            content: "Users/signin",
+            data: { stylesheet: "signin.css" },
+        });
+    };
+    register = async (req, res) => {
+        await this._view(req, res, {
+            title: "Register",
+            content: "Users/register",
+            data: { stylesheet: "register.css" },
+        });
     };
     process_registration = async (req, res) => {
         /* Guard clause to prevent direct access from user */
@@ -34,13 +46,13 @@ module.exports = class Users extends Controller {
             await this._redirect(req, res, "/success");
         }
     };
-    process_login = async (req, res) => {
+    process_signin = async (req, res) => {
         /* Guard clause to prevent direct access from user */
-        if (req.body.login !== "Log in") {
+        if (req.body.signin !== "Sign in") {
             this._redirect(req, res, "/");
             return;
         }
-        let result = await this.#User.validateLogin(req.body, res);
+        let result = await this.#User.validateSignin(req.body, res);
         if (result.type === "error") {
             this._flash(req, result.message);
             await this._redirect(req, res, "/");

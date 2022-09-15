@@ -11,8 +11,10 @@ class Controller {
         req.session.sessionFlash = message;
     };
     _redirect = async (req, res, url) => {
-        const temp = JSON.stringify(res.locals.profiler);
-        req.session.profiler = temp;
+        if (typeof res.locals.profiler !== undefined) {
+            const temp = JSON.stringify(res.locals.profiler);
+            req.session.profiler = temp;
+        }
         await res.redirect(url);
     };
     /* Future implementation for profiler */

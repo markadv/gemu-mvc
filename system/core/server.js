@@ -6,6 +6,7 @@ module.exports = (async () => {
     const config = require("./config");
     const { routes, sessionConfig, enableProfiler, localPort, enableRedis } = config;
     const { getObjKey } = require("../helper/helper");
+    const { performance } = require("perf_hooks");
     const path = require("path");
     /* Redis */
     if (enableRedis) {
@@ -30,8 +31,10 @@ module.exports = (async () => {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(session(sessionConfig));
     // setting up ejs and our views folder
-    app.set("view engine", "ejs");
     app.use(express.static(path.join(__dirname, "..", "..", "assets")));
+    app.set("views", path.join(__dirname, "..", "..", "views"));
+    app.engine("html", require("ejs").renderFile);
+    app.set("view engine", "ejs");
 
     /* Profiler */
     profiler = (req, res, next) => {

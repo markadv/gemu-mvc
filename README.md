@@ -80,7 +80,7 @@ This is an MVC implementation similar to Code Igniter using NodeJS and Express
 
 ## Future features
 
--   [ ] Profiler with and ajax
+-   [ ] Profiler for ajax
 -   [ ] Better view template
 -   [ ] Adding better controller and model templates
 -   [ ] Create a better all-encompassing inline-styles for the profiler
@@ -131,6 +131,7 @@ Go to your local host with the appropriate port to see the sample template.
     1. Import/require the controller file.
     2. Import/require the needed model file.
     3. Declare the model first as a private variable before creating a new instance in the constructor. Declaring the model as private is important. If you don't follow this convention, the application will interpret all the methods from the model as url/routes of your application.
+    4. Name your controller file as you will name your class.
 3. Create your new routes by creating new method in your controller class. It is recommended to use fat arrow function for methods to prevents rebinding of this. Also, it is recommended to use async and await to all your methods.
 4. In order to change your existing routes, go to your config.js in your root folder. Under the routes, declare the base url/routes (this is your /Controller/Method) with trailing slash as your key and your new route as the value. Please follow the nodeJS convention for the get parameters and queries.
 5. It is recommended to declare non-view functions outside the class. However, if you really want create a method instead of function, please add an underscore at the start of the function name. This will prevent the application in mistaking it as a route.
@@ -141,8 +142,8 @@ Go to your local host with the appropriate port to see the sample template.
 ### Views
 
 Gemu MVC uses partial view so you can create the view using components. The default.ejs in views folder act as the main html where you can add component using the includes ejs keyword. You can then easily declare it through the built-in view function. Follow the line used for the dynamic head or content when declaring new components.
-Declaration in controller = {varName: "URL/Routes"}
-Declaration in default.ejs = <% if(varName!==""){ %> <%- include(varName,{data}) %> <% } %>
+Declaration in controller: {varName: "URL/Routes"}
+Declaration in default.ejs: <% if(varName!==""){ %> <%- include(varName,{data}) %> <% } %>
 
 (Currently, the default.ejs only has dynamic title, head, content, and profiler. default.ejs will be updated in the future.)
 
@@ -152,6 +153,7 @@ Declaration in default.ejs = <% if(varName!==""){ %> <%- include(varName,{data})
 2. In order to create new controller, you have to use the sample controller template format.
     1. Import/require the query builder file.
     2. (Optional) Import/require the needed helper file.
+    3. Name your file same as your class name.
 3. You can now create your own model method for data validation and connecting with database.
     1. You can either use the connectToDatabase method or connectToPool method. I have implemented a simple singleton sytem for this.
     2. Create your query with either the this.qb or on your own.

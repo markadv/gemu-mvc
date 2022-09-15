@@ -4,7 +4,7 @@
         <%- include("./partials/head.ejs",{title}) %>
     </head>
     <body>
-        <% if(content!==""){ %> <%- include(content,{data}) %> <% } %> <% if(locals.profiler !== undefined){ %><%-
-        include("../system/core/profiler.ejs") %><% } %>
+        <%- include("./partials/navbar.ejs",{data}) %> <% if(content!==""){ %> <%- include(content,{data}) %> <% } %> <%
+        if(locals.profiler !== undefined){ %> <%- include("../system/core/profiler.ejs") %><% } %>
     </body>
 </html>

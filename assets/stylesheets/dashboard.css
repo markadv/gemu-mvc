@@ -1,0 +1,12 @@
+.container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+.container a {
+	text-align: right;
+}
+textarea {
+	width: 100%;
+}

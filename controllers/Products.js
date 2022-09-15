@@ -1,19 +1,19 @@
 const Controller = require("../system/core/Controller");
-const Template = require("../models/Template");
+const Product = require("../models/Product");
 
-module.exports = class Templates extends Controller {
+module.exports = class Products extends Controller {
     /* For model, you have to declare this as private to prevent
     it from showing in routes. Replace with protected class
     as soon as available */
-    #Template;
+    #Product;
     constructor() {
         super();
-        this.#Template = new Template();
+        this.#Product = new Product();
     }
     index = async (req, res) => {
-        await this._view(req, res, { title: "Templates", content: "", data: {} });
+        await this._view(req, res, { title: "Products", content: "", data: {} });
     };
     test = async (req, res) => {
-        this._redirect(req, res, "/Templates/index");
+        this._redirect(req, res, "/Products/index");
     };
 };

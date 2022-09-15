@@ -2,6 +2,8 @@ enableProfiler: true
 localPort: 8888
 routes:
     "/Users/index": "/"
+    "/Users/signin": "/signin"
+    "/Users/register": "/register"
     "/Users/process_registration": "/process/register"
     "/Users/process_login": "/process/login"
     "/Users/success": "/success"
@@ -26,7 +28,7 @@ database2:
 database3:
     uri: "mongodb+srv://markad:rL64xwvroAYU25fV@gemu-mvc.0rdsfx8.mongodb.net/?retryWrites=true&w=majority"
     database: "gemu-mvc"
-enableRedis: true
+enableRedis: false
 sessionConfig:
     secret: "gemu_mvc"
     resave: false

@@ -1,0 +1,45 @@
+<div class="error"><?= "input error" ?></div>
+<div class="success"><?= "success" ?></div>
+<h1 class="h1 mb-3 fw-normal">Edit Profile</h1>
+  <div class='container text-center'>
+      <div class="form-signin w-100 m-auto">
+        <form action="/profile/edit" method="POST" class="needs-validation">
+          <h2 class="h3 mb-3 fw-normal">Edit Information</h2>
+          <input type="hidden" name="action" value="edit_information"/>
+          <div class="form-floating">
+            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" name="first_name" class="form-control" id="floatingInput" placeholder="Michael" required>
+            <label for="floatingInput">First name</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" name="last_name" class="form-control" id="floatingInput" placeholder="Choi" required>
+            <label for="floatingInput">Last name</label>
+          </div>
+          <input type='submit' class="w-100 btn btn-lg btn-primary" value='Save'/>
+        </form>
+      </div>
+      <div class="form-signin w-100 m-auto">
+        <form action="/profile/password" method="POST" class="needs-validation">
+          <h2 class="h3 mb-3 fw-normal">Change Password</h2>
+          <input type="hidden" name="action" value="change_password"/>
+          <div class="form-floating">
+            <input type="password" name="old_password" class="form-control" id="floatingPassword" placeholder="Old Password" required>
+            <label for="floatingPassword">Old Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="new_password" class="form-control" id="floatingPassword" placeholder="New Password" required>
+            <label for="floatingPassword">New Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="confirm_password" class="form-control" id="floatingPassword" placeholder="Confirm Password" required>
+            <label for="floatingPassword">Confirm Password</label>
+          </div>
+
+          <input type='submit' class="w-100 btn btn-lg btn-primary" value='Save'/>
+        </form>
+      </div>
+  </div>
+  </body>

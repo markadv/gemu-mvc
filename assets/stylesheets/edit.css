@@ -1,0 +1,58 @@
+.container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+a {
+	margin-bottom: 10px;
+}
+.form-signin {
+	max-width: 500px;
+	padding: 15px;
+}
+.form-signin .form-floating:focus-within {
+	z-index: 2;
+}
+.form-signin input[name="name"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.form-signin textarea {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+.form-signin input[name="price"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top-left-radius: 0;
+}
+
+.form-signin input[name="count"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	opacity: 1;
+}
+.error {
+	color: white;
+	width: 100%;
+	text-align: center;
+	background-color: red;
+	margin: 0 auto;
+}
+.success {
+	color: white;
+	width: 100%;
+	text-align: center;
+	background-color: green;
+	margin: 0 auto;
+}
