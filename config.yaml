@@ -1,14 +1,14 @@
-enableProfiler: true
+enableProfiler: false
 localPort: 8888
 routes:
     "/Users/index": "/"
     "/Users/signin": "/signin"
     "/Users/register": "/register"
     "/Users/process_registration": "/process/register"
-    "/Users/process_login": "/process/login"
+    "/Users/process_signin": "/process/signin"
     "/Users/success": "/success"
     "/Users/logoff": "/logoff"
-dbdriver: "mongodb"
+dbdriver: "mysql"
 database1:
     host: "localhost"
     port: 5432
@@ -28,7 +28,7 @@ database2:
 database3:
     uri: "mongodb+srv://markad:rL64xwvroAYU25fV@gemu-mvc.0rdsfx8.mongodb.net/?retryWrites=true&w=majority"
     database: "gemu-mvc"
-enableRedis: false
+enableRedis: true
 sessionConfig:
     secret: "gemu_mvc"
     resave: false

@@ -1,8 +1,9 @@
-<div class="error"><?= "input error" ?></div>
-<div class="success"><?= "success" ?></div>
+<% if(locals.sessionFlash){%>
+<div class="<%= locals.sessionFlash.type %>"><%= locals.sessionFlash.message %></div>
+<% } %>
 <div class="container text-center">
     <main class="form-signin w-100 m-auto">
-        <form action="/register/validate" method="POST" class="needs-validation">
+        <form action="/process/register" method="POST" class="needs-validation">
             <img class="bi me-2" width="64" height="64" src="./images/v88.png" alt="Vilage88 Logo" />
             <h1 class="h3 mb-3 fw-normal">Please register</h1>
             <div class="form-floating has-validation">
@@ -20,7 +21,7 @@
             <div class="form-floating has-validation">
                 <input
                     type="text"
-                    name="first_name"
+                    name="firstName"
                     class="form-control"
                     id="floatingInput"
                     placeholder="Michael"
@@ -32,7 +33,7 @@
             <div class="form-floating has-validation">
                 <input
                     type="text"
-                    name="last_name"
+                    name="lastName"
                     class="form-control"
                     id="floatingInput"
                     placeholder="Choi"
@@ -56,7 +57,7 @@
             <div class="form-floating has-validation">
                 <input
                     type="password"
-                    name="confirm_password"
+                    name="confirmPassword"
                     class="form-control"
                     id="floatingPassword"
                     placeholder="Confirm Password"

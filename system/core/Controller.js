@@ -3,12 +3,12 @@ class Controller {
     _view = async (req, res, view = {}) => {
         res.render("default.ejs", view);
     };
-    _flashData = async (req, res) => {
+    _flashData = (req, res) => {
         res.locals.sessionFlash = req.session.sessionFlash;
         delete req.session.sessionFlash;
     };
-    _flash = async (req, message) => {
-        req.session.sessionFlash = message;
+    _flash = (req, data) => {
+        req.session.sessionFlash = data;
     };
     _redirect = async (req, res, url) => {
         if (typeof res.locals.profiler !== undefined) {

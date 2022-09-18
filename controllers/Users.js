@@ -17,6 +17,7 @@ module.exports = class Users extends Controller {
         this._redirect(req, res, "/signin");
     };
     signin = async (req, res) => {
+        this._flashData(req, res);
         await this._view(req, res, {
             title: "Signin",
             content: "Users/signin",
@@ -24,6 +25,7 @@ module.exports = class Users extends Controller {
         });
     };
     register = async (req, res) => {
+        this._flashData(req, res);
         await this._view(req, res, {
             title: "Register",
             content: "Users/register",
@@ -32,32 +34,32 @@ module.exports = class Users extends Controller {
     };
     process_registration = async (req, res) => {
         /* Guard clause to prevent direct access from user */
-        if (req.body.register !== "Register") {
-            this._redirect(req, res, "/");
+        if (Object.keys(req.body).length <= 0) {
+            this._redirect(req, res, "/register");
             return;
         }
         let result = await this.#User.validateRegister(req.body, res);
         if (result.type === "error") {
-            this._flash(req, result.message);
-            await this._redirect(req, res, "/");
+            this._flash(req, result);
+            await this._redirect(req, res, "/register");
         } else {
-            this._flash(req, result.message);
+            this._flash(req, result);
             req.session.data = result.data;
             await this._redirect(req, res, "/success");
         }
     };
     process_signin = async (req, res) => {
         /* Guard clause to prevent direct access from user */
-        if (req.body.signin !== "Sign in") {
+        if (Object.keys(req.body).length <= 0) {
             this._redirect(req, res, "/");
             return;
         }
         let result = await this.#User.validateSignin(req.body, res);
         if (result.type === "error") {
-            this._flash(req, result.message);
-            await this._redirect(req, res, "/");
+            this._flash(req, result);
+            // await this._redirect(req, res, "/");
         } else {
-            this._flash(req, result.message);
+            this._flash(req, result);
             req.session.data = result.data;
             await this._redirect(req, res, "/success");
         }
@@ -68,7 +70,6 @@ module.exports = class Users extends Controller {
             return;
         }
         await this._view(req, res, { title: "Success", content: "Users/success", data: req.session.data });
-        // await this._view(res, "Users/success", req.session.data);
     };
     logoff = async (req, res) => {
         delete req.session.data;

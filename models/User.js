@@ -6,33 +6,32 @@ module.exports = class User extends Model {
     getUserByEmail = async (res, email) => {
         await this.connectToDatabase();
         /* Start of mySql */
-        // const query = await this.qb.select().where(["email", "=", "?"]).get("users");
-        // const [rows, field] = await this.query(res, query, value);
+        const query = await this.qb.select().where(["email", "=", "?"]).get("users");
+        const [rows, field] = await this.query(res, query, email);
         /* End of mySql */
         /* Start of pg */
         // const query = await this.qb.select().where(["email", "=", "$1"]).get("users");
         // const value = email;
         /* End of pg */
         /* Start of mongodb */
-        const table = "users";
-        const query = { email };
-        const rows = await this.mongoFind(res, table, query);
+        // const table = "users";
+        // const query = { email };
+        // const rows = await this.mongoFind(res, table, query);
         /* End of mongodb */
         // const rows = await this.query(res, query, value);
-        console.log(rows);
         return rows;
     };
 
     createUser = async (res, values) => {
         await this.connectToDatabase();
         /* mySQL and Postgres */
-        // const query = await this.qb
-        //     .values(["$1", "$2", "$3", "$4"])
-        //     .insertInto("first_name", "last_name", "email", "password_hash")
-        //     .set("users");
-        // return await this.query(res, query, values);
-        const table = "users";
-        return await this.mongoCreate(res, table, values);
+        const query = await this.qb
+            .values(["$1", "$2", "$3", "$4"])
+            .insertInto("first_name", "last_name", "email", "password_hash")
+            .set("users");
+        return await this.query(res, query, values);
+        // const table = "users";
+        // return await this.mongoCreate(res, table, values);
     };
     validateRegister = async (post, res) => {
         const { firstName, lastName, email, password, confirmPassword } = post;
@@ -74,7 +73,7 @@ module.exports = class User extends Model {
             };
         }
     };
-    validateLogin = async (post, res) => {
+    validateSignin = async (post, res) => {
         const { email, password } = post;
         if (!email || !password) {
             return { type: "error", message: "Please fill in empty fields" };
