@@ -73,6 +73,7 @@ module.exports = class Users extends Controller {
     };
     logoff = async (req, res) => {
         delete req.session.data;
+        this._flash(req, { type: "success", message: "Successfully logged off" });
         this._redirect(req, res, "/");
     };
 };

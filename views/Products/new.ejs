@@ -1,0 +1,60 @@
+<div class="error"><%= "input error" %></div>
+<div class="success"><%= "success" %></div>
+<div class="container text-center">
+    <main class="form-signin w-100 m-auto text-center">
+        <form action="/new/validate" method="POST" class="needs-validation">
+            <a class="btn btn-outline-primary" href="/">Return to Dashboard</a>
+            <h1 class="h3 mb-3 fw-normal">Add a New Product</h1>
+            <div class="form-floating">
+                <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="e.g. V88 Cap"
+                    required
+                />
+                <label for="floatingInput">Name</label>
+            </div>
+            <div class="form-floating">
+                <textarea
+                    name="description"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="A super cool cap."
+                    style="height: 200px"
+                    required
+                ></textarea>
+                <label for="floatingInput">Description</label>
+            </div>
+            <div class="form-floating">
+                <input
+                    type="number"
+                    min="0.00"
+                    step="0.01"
+                    name="price"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="10.00"
+                    required
+                />
+                <label for="floatingInput">Price</label>
+            </div>
+            <div class="form-floating">
+                <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    name="count"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="10"
+                    required
+                />
+                <label for="floatingInput">Inventory count</label>
+            </div>
+
+            <input type="submit" class="w-100 btn btn-lg btn-primary" value="Create" />
+        </form>
+    </main>
+</div>

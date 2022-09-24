@@ -8,6 +8,7 @@ routes:
     "/Users/process_signin": "/process/signin"
     "/Users/success": "/success"
     "/Users/logoff": "/logoff"
+    "/Products/index": "/dashboard"
 dbdriver: "mysql"
 database1:
     host: "localhost"
